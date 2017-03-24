@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<link href="calendar.css" rel="stylesheet">
+	<script language="javascript" src="jquery-1.7.2.min.js"></script>
+	<script src="calendar.js" language="javascript"></script>
+	<style>
+		input {
+			width: 300px;
+			height: 30px;
+			line-height: 30px;
+			padding-left: 10px;
+			box-sizing: border-box;
+			display: block;
+			margin-top:5px;
+		}
+		.input_box{
+			width: 300px;
+			height: 30px;
+			margin:100px auto;	
+			position: relative;		
+		}
+		span{
+			color:#222222;
+			padding-left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="input_box">
+		<span>规定日期格式；选择年月日时；中心定位；起止时间；确定、show、hide的回调函数</span>
+		<input type="text" placeholder="点击选择日期" id="choice_data1">
+	</div>
+	<div class="input_box" id="aaaaaaa">
+		<span>默认日期格式；选择年月日；输入框定位：</span>
+		<input type="text" placeholder="点击选择日期" id="choice_data2">
+	</div>
+	<div class="input_box">
+		<span>默认日期格式；选择年月日时分；改变颜色；中心定位</span>
+		<input type="text" placeholder="点击选择日期" id="choice_data3">
+	</div>
+	<script>
+		$(document).ready(function(){
+			
+			
+			var calendar1 = new Calendar({
+				"inputId":"#choice_data1",//绑定的input框id
+				"startTime":"2009-6-4",//初始时间，时间格式不可变，月是1-12个月
+				"endTime":"2040-10-2",//截止时间，时间格式不可变，月是1-12个月
+				"dataFormat":"yy/MM/dd hh:mm:ss",//传入时间格式，不传则默认"yyyy-MM-dd hh:mm:ss"
+				"isHourMin":true,//false表示只选年月日，不选小时分钟;不传或者true默认选择年月日小时分钟
+				"isHourOnly":false,//true表示只选小时，不选分钟;不传或者false默认选择小时、分钟				
+				"showPosition":false,//是否根据input框定位，true是根据，false或不传是全屏居中
+				"headColor":"#f36444",//主色调，默认为#f36444橘色
+				"callback":function(_time){
+					console.log(_time);
+				},//获得选择时间回调函数
+				"showCallback":function(){
+					console.log("show");
+				},//弹出时的回调
+				"hideCallback":function(){
+					console.log("hide");
+				},//弹出时的回调
+				
+			});
+			calendar1.setConfig();
+
+
+
+			var calendar2 = new Calendar({
+				"inputId":"#choice_data2",//绑定的input框id
+				"showPosition":true,//是否根据input框定位，true是根据，false或不传是全屏居中
+				"isHourMin":false//false表示只选年月日，不选小时分钟;不传或者true默认选择年月日小时分钟
+			});
+			calendar2.setConfig();
+
+
+			var calendar3 = new Calendar({
+				"inputId":"#choice_data3",//绑定的input框id
+				"headColor":"rgba(147,112,219,0.5)",//主色调，默认为#f36444橘色
+				"isHourOnly":false//true表示只选小时，不选分钟;不传或者false默认选择小时、分钟				
+			});
+			calendar3.setConfig();
+		});
+	</script>
+
+</body>
+</html>
